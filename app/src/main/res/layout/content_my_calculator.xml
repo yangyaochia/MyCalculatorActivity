@@ -102,6 +102,15 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="%"
+        android:id="@+id/buttonpercent"
+        android:layout_alignTop="@+id/buttons"
+        android:layout_alignStart="@+id/button9" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="0"
         android:id="@+id/button0"
         android:layout_below="@+id/button1"

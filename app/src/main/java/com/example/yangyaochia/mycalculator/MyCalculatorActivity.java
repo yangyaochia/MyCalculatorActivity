@@ -19,6 +19,7 @@ public class MyCalculatorActivity extends AppCompatActivity {
     private Button button0c; // reset C
     private Button button0s; // signed
     private Button button0p;
+    private Button button0percent;
 
     private double result;
     private boolean plusEvent;
@@ -59,6 +60,7 @@ public class MyCalculatorActivity extends AppCompatActivity {
         button0c = (Button)findViewById(R.id.buttonc);
         button0s = (Button)findViewById(R.id.buttons);
         button0p = (Button)findViewById(R.id.buttonp);
+        button0percent = (Button)findViewById(R.id.buttonpercent);
 
         result = 0;
         plusEvent = false;
@@ -107,10 +109,19 @@ public class MyCalculatorActivity extends AppCompatActivity {
                 //textView01.setText( toString(-1 * Integer.valueOf(textView01.getText())) );
                 String origin = textView01.getText().toString();
                 double temp = -1 * Double.valueOf(origin);
-                textView01.setText(Double.toString(temp) );
+
+                if (( temp == Math.floor(temp)))
+                {
+                    int intTemp = (int) temp;
+                    textView01.setText(String.valueOf(intTemp));
+                }
+                else
+                    textView01.setText(Double.toString(temp) );
 
             }
         });
+
+
 
         button0p.setOnClickListener(new Button.OnClickListener(){
 
@@ -124,6 +135,34 @@ public class MyCalculatorActivity extends AppCompatActivity {
                 String origin = textView01.getText().toString();
                 String after = origin.concat(".");
                 textView01.setText(after);
+
+            }
+        });
+
+        button0percent.setOnClickListener(new Button.OnClickListener(){
+
+            @Override
+
+            public void onClick(View v) {
+
+                // TODO Auto-generated method stub
+
+                String origin = textView01.getText().toString();
+                double temp = Double.valueOf(origin) / 100;
+
+                String[] splitter = String.valueOf(temp).split("\\.");
+
+                if ((temp == Math.floor(temp)))
+                {
+                    int intTemp = (int) temp;
+                    textView01.setText(String.valueOf(intTemp));
+                }
+                else if ( splitter[1].length() > 5 )
+                {
+                    textView01.setText(String.format("%.5g%n", temp));
+                }
+                else
+                    textView01.setText(String.valueOf(temp));
 
             }
         });
